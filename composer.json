@@ -2,7 +2,7 @@
     "name": "lintkit/typo3-mago-config",
     "description": "Liquid Light base configuration for Mago in TYPO3 projects",
     "type": "library",
-    "version": "1.1.1",
+    "version": "2.0.0",
     "authors": [
         {
             "name": "Mike Street",

@@ -1,3 +1,16 @@
+# 2.0.0
+
+**5th November 2026**
+
+#### Breaking
+
+- Rename the package to `lintkit/typo3-mago-config`. It replaces `lintkit/mago-config`
+- Merge the TYPO3 rules into `.mago.toml` and remove `.typo3.mago.toml`. Point the `mago` script at `vendor/lintkit/typo3-mago-config/.mago.toml`
+
+#### Dependencies
+
+- Require `typo3/testing-framework` `^8.0 || ^9.0`
+
 # 1.1.1
 
 **5th November 2026**
