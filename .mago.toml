@@ -12,6 +12,15 @@ excludes = [
 	"**/Library/**",
 	"**/node_modules/**",
 	"var/**",
+
+	# Projects
+	"backup/**",
+	"html/**",
+
+	# TYPO3
+	"config/system/settings.php",
+	"typo3/**",
+	"vendor/typo3/class-alias-loader/res/**",
 ]
 
 ###
@@ -55,13 +64,20 @@ preserve-breaking-array-like = true
 ###
 
 [linter]
-integrations = ["phpunit"]
+integrations = ["phpunit", "symfony"]
 baseline = ".mago/baseline-lint.toml"
 
-# Test classes grow with coverage
+# Test classes grow with coverage, and Extbase models have a getter and setter for every database column
 [linter.rules.too-many-methods]
 level = "warning"
-exclude = ["**/Tests/**"]
+exclude = [
+	"**/Tests/**",
+	"**/Classes/Domain/Model/**",
+]
+
+# Extbase models map every database column to a property
+[linter.rules.too-many-properties]
+exclude = ["**/Classes/Domain/Model/**"]
 
 # Complexity scores are hints, so report them without failing the build
 [linter.rules.cyclomatic-complexity]
@@ -74,6 +90,23 @@ level = "warning"
 [linter.rules.no-assign-in-condition]
 level = "error"
 
+# TYPO3 exception codes are timestamps; keep them searchable as plain integers
+[linter.rules.readable-literal]
+enabled = false
+
+# TYPO3 registers TCA and configuration through $GLOBALS
+[linter.rules.no-global]
+exclude = [
+	"**/Configuration/TCA/**",
+	"**/ext_localconf.php",
+	"**/ext_tables.php",
+	"config/system/*.php",
+]
+
+# ext_emconf.php is read by the TYPO3 extension manager and must not declare strict types
+[linter.rules.strict-types]
+exclude = ["**/ext_emconf.php"]
+
 ###
 # Analyzer
 ###
@@ -82,3 +115,12 @@ level = "error"
 baseline = ".mago/baseline-analyze.toml"
 find-unused-parameters = true
 check-missing-override = true
+
+# TYPO3 entry-point files start with the `defined('TYPO3') || die();` access guard
+ignore = [
+	{ code = "unused-statement", pattern = "binary operation", in = [
+		"**/Configuration/TCA/**",
+		"**/ext_localconf.php",
+		"**/ext_tables.php",
+	] },
+]
