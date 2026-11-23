@@ -32,6 +32,10 @@ Mago targets PHP 8.4 by default. If the project sets `config.platform.php`, pass
 "mago": "MAGO_PHP_VERSION=$(composer config platform.php) mago --config vendor/lintkit/typo3-mago-config/.mago.toml",
 ```
 
+### Rules
+
+Shorthand ternaries (`$a ?: $b`), `empty()` and `isset()` are allowed.
+
 ### TYPO3
 
 The config makes allowances for TYPO3:

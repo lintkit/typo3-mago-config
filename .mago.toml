@@ -94,6 +94,16 @@ level = "error"
 [linter.rules.readable-literal]
 enabled = false
 
+# Shorthand ternaries, empty() and isset() are idiomatic and widely used in TYPO3 code
+[linter.rules.no-shorthand-ternary]
+enabled = false
+
+[linter.rules.no-empty]
+enabled = false
+
+[linter.rules.no-isset]
+enabled = false
+
 # TYPO3 registers TCA and configuration through $GLOBALS
 [linter.rules.no-global]
 exclude = [
