@@ -42,6 +42,7 @@ The config makes allowances for TYPO3:
 
 - TYPO3 core, `config/system/settings.php` and project `backup/` and `html/` directories are not checked
 - `$GLOBALS` is allowed in TCA, `ext_localconf.php`, `ext_tables.php` and `config/system/*.php`
+- Literals may be passed positionally in TCA, unit tests and `ext_localconf.php`
 - Extbase models may have many properties and methods
 - Exception codes (timestamps) don't need numeric separators
 - `ext_emconf.php` doesn't need `declare(strict_types=1)`

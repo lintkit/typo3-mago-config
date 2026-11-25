@@ -113,6 +113,14 @@ exclude = [
 	"config/system/*.php",
 ]
 
+# TYPO3 configuration APIs and PHPUnit assertions take positional literals
+[linter.rules.literal-named-argument]
+exclude = [
+	"app/*/*/Configuration/TCA/**",
+	"app/*/*/Tests/Unit/**",
+	"app/*/*/ext_localconf.php",
+]
+
 # ext_emconf.php is read by the TYPO3 extension manager and must not declare strict types
 [linter.rules.strict-types]
 exclude = ["**/ext_emconf.php"]
